@@ -136,10 +136,10 @@ void interpolate_rates(double Alpha[2], double Beta[2], double *R2p2s, double TR
     logTR = log(TR);
 
     /* Check if TM/TR is in the range tabulated */
-    if (TM_TR < TM_TR_MIN || TM_TR > TM_TR_MAX) {
-      fprintf(stderr, "Error: TM/TR-value is out of range in interpolate_rates.\n");
-      exit(1);
-    }
+    // if (TM_TR < TM_TR_MIN || TM_TR > TM_TR_MAX) {
+    //   fprintf(stderr, "Error: TM/TR-value %e is out of range in interpolate_rates [%e,%e].\n",TM_TR,TM_TR_MIN,TM_TR_MAX);
+    //   exit(1);
+    // }
 
     /* Check if log(TR) is in the range tabulated */
     if (TR < TR_MIN || TR > TR_MAX) {
