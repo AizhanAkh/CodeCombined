@@ -425,7 +425,6 @@ int perturb_init(
 #ifdef _OPENMP
           tstart = omp_get_wtime();
 #endif
-
           class_call_parallel(perturb_solve(ppr,
                                             pba,
                                             pth,
@@ -3493,9 +3492,9 @@ int perturb_vector_init(
 
       }
 
-      class_test(ppw->approx[ppw->index_ap_tca] == (int)tca_off,
-                 ppt->error_message,
-                 "scalar initial conditions assume tight-coupling approximation turned on");
+      /* class_test(ppw->approx[ppw->index_ap_tca] == (int)tca_off, */
+      /*            ppt->error_message, */
+      /*            "scalar initial conditions assume tight-coupling approximation turned on"); */
 
     }
 
@@ -7324,6 +7323,7 @@ int perturb_derivs(double tau,
   pvecmetric = ppw->pvecmetric;
   pv = ppw->pv;
 
+
   /** - get background/thermo quantities in this point */
 
   class_call(background_at_tau(pba,
@@ -7367,7 +7367,6 @@ int perturb_derivs(double tau,
   if (pba->has_dmeff == _TRUE_)
     R_dmeff = pvecback[pba->index_bg_rho_dmeff]/pvecback[pba->index_bg_rho_b];
 
-
   /** - Compute 'generalised cotK function of argument \f$ \sqrt{|K|}*\tau \f$, for closing hierarchy.
       (see equation 2.34 in arXiv:1305.3261): */
   if (pba->has_curvature == _FALSE_){
@@ -7380,6 +7379,7 @@ int perturb_derivs(double tau,
     else
       cotKgen = sqrt_absK/k/tan(sqrt_absK*tau);
   }
+
 
   s2_squared = 1.-3.*pba->K/k2;
 
@@ -7403,7 +7403,6 @@ int perturb_derivs(double tau,
         theta_dmeff = y[pv->index_pt_theta_dmeff];
       }
     }
-
 
     /** - --> (b) perturbed recombination **/
 
@@ -7486,7 +7485,6 @@ int perturb_derivs(double tau,
     /** - --> (e) BEGINNING OF ACTUAL SYSTEM OF EQUATIONS OF EVOLUTION */
 
     /* Note concerning perturbed recombination: $cb2*delta_b$ must be replaced everywhere by $cb2*(delta_b+delta_temp)$. If perturbed recombination is not required, delta_temp is equal to zero. */
-
 
     /** -> dmeff */
 
@@ -7572,7 +7570,6 @@ int perturb_derivs(double tau,
       class_call(perturb_tca_slip_and_shear(y,pppaw,error_message),
                  error_message,
                  error_message);
-
 
       /** contributions from interactions with dark matter (dmeff) **/
       slip = ppw->tca_slip;
@@ -7686,13 +7683,14 @@ int perturb_derivs(double tau,
         dy[pv->index_pt_theta_g] =
           -(dy[pv->index_pt_theta_b]+a_prime_over_a*theta_b-cb2*k2*(delta_b+delta_temp))/R
           +k2*(0.25*delta_g-s2_squared*ppw->tca_shear_g)+(1.+R)/R*metric_euler;
+
         /** interactions between dark matter and baryons affect photons in TCA **/
         if (pba->has_dmeff == _TRUE_){
           dy[pv->index_pt_theta_g] += rate_dmeff*R_dmeff/R * (theta_dmeff-theta_b);
         }
       }
-    }
 
+    }
 
     /** - ---> cdm */
 
