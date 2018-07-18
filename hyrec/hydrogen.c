@@ -679,7 +679,6 @@ double rec_HMLA_2photon_dxedlna(double xe, double nH, double H, double TM, doubl
    for (i = 0; i < 2; i++) Trv[i] = create_1D_array(NVIRT);
    for (i = 0; i < 2; i++) Tvr[i] = create_1D_array(NVIRT);
    for (i = 0; i < 3; i++) Tvv[i] = create_1D_array(NVIRT);
-
    /* Redshift photon occupation number from previous times and higher energy bins */
    fplus_from_fminus(fplus, fplus_Ly, logfminus_hist, logfminus_Ly_hist, TR,
                      zstart, dlna, iz, z, twog->Eb_tab);

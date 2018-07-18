@@ -25,9 +25,14 @@ T_cmb = 2.726
 3) baryon density: either 'Omega_b' or 'omega_b' (default: 'omega_b' set to 0.02253)
 
 #Omega_b = 0.05
-omega_b = 0.0266691
+#omega_b = 0.0266691
 
-
+omega_b = 1.e-15
+omega_dmeff = 0.026691
+m_dmeff = 1.0
+spin_dmeff = 0.5
+sigma_dmeff = 1.0e-32
+npow_dmeff = -2
 
 4) ultra-relativistic species / massless neutrino density: either 'N_eff' or 'Omega_ur' or 'omega_ur' (default: 'N_eff' set to 3.04)
 
@@ -38,14 +43,9 @@ N_eff = 3.04
 
 5) density of cdm (cold dark matter): 'Omega_cdm' or 'omega_cdm' (default: 'omega_cdm' set to 0.1122)
 
-#Omega_cdm = 0.25
-omega_cdm = 0.110616
-#omega_cdm = 1.e-15
-#omega_dmeff = 0.1205
-#m_dmeff = 1.0
-#spin_dmeff = 0.5
-#sigma_dmeff = 0.
-#npow_dmeff = -2
+Omega_cdm = 0.25
+#omega_cdm = 0.110616
+
 6) all parameters describing the ncdm sector (i.e. any non-cold dark matter relics, 
    including massive neutrinos, warm dark matter, etc.): 
 
@@ -191,17 +191,17 @@ output = tCl,mPk
 2) if you want an estimate of the non-linear P(k), enter 'halofit' or 'Halofit' or 'HALOFIT' for Halofit; or 'SPT' for one-loop perturbation theory; otherwise leave blank (default: blank, no non-linear P(k))
 
 #non linear = halofit
-non linear = SPT
+#non linear = SPT
 
 If you select 'SPT', the code will automatically compute IR resummed spectra. If you want to skip IR resummation, type here 'NO', 'No', or 'N' (default: yes, or leave blank)
 
-IR resummation = No
+IR resummation = 
 
 
 3) list of modes ('s' for scalars, 'v' for vectors, 't' for tensors). More than one letter allowed, can be attached or separated by arbitrary characters; letters can be small or capital. (default: set to 's')
 
-#modes = s
-modes = s,t
+modes = s
+#modes = s,t
 
 4) relevant only if you ask for 'tCl, lCl' and/or 'pCl, lCl': if you want the spectrum of lensed Cls, enter a word containing the letter 'y' or 'Y' (default: no lensed Cls)
 

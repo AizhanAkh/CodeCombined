@@ -38,9 +38,10 @@ OPTFLAG = -O4 -ffast-math -lgsl -lgslcblas -lfftw3 -lm #-march=native
 #OPTFLAG = -fast
 
 # your openmp flag (comment for compiling without openmp)
-#OMPFLAG   = -fopenmp
+OMPFLAG   = -fopenmp
 #OMPFLAG   = -mp -mp=nonuma -mp=allcores -g
-OMPFLAG   = -openmp
+#OMPFLAG   = -openmp
+
 
 # all other compilation flags
 CCFLAG = -g -fPIC
@@ -74,6 +75,15 @@ CCFLAG += -DHYREC
 INCLUDES += -I../hyrec
 EXTERNAL += hyrectools.o helium.o hydrogen.o history.o
 endif
+
+#===============================================================================
+# GSL lib
+#===============================================================================
+CCFLAG += -lgsl -lgslcblas -lm
+#LDFLAGS= -lgsl
+#LIBS= -lgsl
+INCLUDES += -I/usr/local/include
+INCLUDES += -I/usr/include
 
 %.o:  %.c .base
 	cd $(WRKDIR);$(CC) $(OPTFLAG) $(OMPFLAG) $(CCFLAG) $(INCLUDES) -c ../$< -o $*.o
@@ -147,7 +157,7 @@ libclass.a: $(TOOLS) $(SOURCE) $(EXTERNAL)
 	$(AR)  $@ $(addprefix build/, $(TOOLS) $(SOURCE) $(EXTERNAL))
 
 class: $(TOOLS) $(SOURCE) $(EXTERNAL) $(OUTPUT) $(CLASS)
-	$(CC) $(OPTFLAG) $(OMPFLAG) $(LDFLAG) -o class $(addprefix build/,$(notdir $^)) -lm
+	$(CC) $(OPTFLAG) $(OMPFLAG) $(LDFLAG) -o class $(addprefix build/,$(notdir $^)) -lm -lgsl -lgslcblas
 
 test_sigma: $(TOOLS) $(SOURCE) $(EXTERNAL) $(OUTPUT) $(TEST_SIGMA)
 	$(CC) $(OPTFLAG) $(OMPFLAG) $(LDFLAG) -o test_sigma $(addprefix build/,$(notdir $^)) -lm

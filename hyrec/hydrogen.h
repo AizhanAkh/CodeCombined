@@ -55,7 +55,6 @@ double rec_HRecFast_dxedlna(double xe, double nH, double H, double TM, double TR
 #define TM_TR_MAX 1.0
 #define NTM 40
 
-
 /* Effective rate coefficients structure */
 typedef struct {
   double *logTR_tab;

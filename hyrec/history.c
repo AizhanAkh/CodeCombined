@@ -259,6 +259,7 @@ Builds a recombination history
 void rec_build_history(REC_COSMOPARAMS *param, HRATEEFF *rate_table, TWO_PHOTON_PARAMS *twog_params,
                        double *xe_output, double *Tm_output, double *Tdmeff_output) {
 
+
    long iz;
    double **logfminus_hist;
    double *logfminus_Ly_hist[3];
@@ -354,6 +355,7 @@ void rec_build_history(REC_COSMOPARAMS *param, HRATEEFF *rate_table, TWO_PHOTON_
 
    for(; iz<param->nz && Delta_xe < 5e-5; iz++) {
       z = (1.+param->zstart)*exp(-param->dlna*iz) - 1.;
+
       H = rec_HubbleConstant(param,z);
       xe_output[iz] =  xe_PostSahaH(param->nH0*cube(1.+z)*1e-6, H, kBoltz*param->T0*(1.+z), rate_table, twog_params,
 				    param->zstart, param->dlna, logfminus_hist, logfminus_Ly_hist, iz, z, &Delta_xe, MODEL, energy_injection_rate(param,z));
@@ -367,7 +369,6 @@ void rec_build_history(REC_COSMOPARAMS *param, HRATEEFF *rate_table, TWO_PHOTON_
     }
     // printf("here ok 5 %e Tm_output[iz] %e  Tdmeff_output[iz] %e \n",z,Tm_output[iz-1],Tdmeff_output[iz-1]);
 
-
     /******* Segment where we follow the hydrogen recombination evolution with two-photon processes
              Tm fixed to steady state ******/
 
@@ -378,7 +379,6 @@ void rec_build_history(REC_COSMOPARAMS *param, HRATEEFF *rate_table, TWO_PHOTON_
     dxedlna_prev = (xe_output[iz-1] - xe_output[iz-3])/2./param->dlna;
 
     for(; iz<param->nz && 1.-Tm_output[iz-1]/param->T0/(1.+z) < 5e-4 && z > 950.; iz++) { //In original hyrec, z > 700; if scattering with DM is switch on we want to make sure that the full evolution is followed early enough
-
 
        rec_get_xe_next1(param, z, xe_output[iz-1], xe_output+iz, rate_table, FUNC_H2G, iz-1, twog_params,
                	      logfminus_hist, logfminus_Ly_hist, &z_prev, &dxedlna_prev, &z_prev2, &dxedlna_prev2);
@@ -436,7 +436,6 @@ void rec_build_history(REC_COSMOPARAMS *param, HRATEEFF *rate_table, TWO_PHOTON_
         z = (1.+param->zstart)*exp(-param->dlna*iz) - 1.;
     }
     // printf("success in hyrec\n");
-
     /* Cleanup */
     free_2D_array(logfminus_hist, NVIRT);
     free(logfminus_Ly_hist[0]);
@@ -616,4 +615,3 @@ double calculate_dmeff_rate(REC_COSMOPARAMS *param,double z,double xe, double Tm
 
   return result;
 }
-

@@ -19,7 +19,6 @@
 /** here is the switch **/
 #define MODEL FULL     /* default setting: FULL */
 
-
 /***** Switches for derivative d(xe)/dt *****/
 
 #define FUNC_HEI     1
@@ -47,6 +46,7 @@ typedef struct {
    /** parameters for energy injection */
 
    double annihilation; /** parameter describing CDM annihilation (f <sigma*v> / m_cdm, see e.g. 0905.0003) */
+
    short has_on_the_spot; /** do we want to use the on-the-spot approximation? */
 
    double decay; /** parameter descibing CDM decay (f/tau, see e.g. 1109.6322)*/
@@ -112,4 +112,3 @@ double energy_injection_rate(REC_COSMOPARAMS *param, double z);
 double calculate_dQdnla_dmeff(REC_COSMOPARAMS *param,double z,double xe, double Tm,double Tdmeff);
 double calculate_dQdnla_baryons(REC_COSMOPARAMS *param,double z,double xe, double Tm,double Tdmeff);
 double calculate_dmeff_rate(REC_COSMOPARAMS *param,double z,double xe, double Tm,double Tdmeff);
-

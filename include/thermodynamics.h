@@ -173,7 +173,6 @@ struct thermo
   short  calculation_a_la_dvorkin_et_al; /* do we incorporate backreaction onto baryon temperature?*/
   //@}
   short sigma_dmeff_security; //flag to enforce a la dvorkin calculation in thermo when sigma_dmeff > 1e-35cm^2
-
   /** @name - all indices for the vector of thermodynamical (=th) quantities stored in table */
 
   //@{
@@ -318,7 +317,7 @@ struct recombination {
   short  calculation_a_la_dvorkin_et_al; /* do we incorporate backreaction onto baryon temperature?*/
   short  calculation_a_la_munoz_et_al; /* do we incorporate backreaction onto baryon temperature?*/
   short  calculation_a_la_Kim; /* do we incorporate backreaction onto baryon temperature?*/
-  
+
   //@}
 
   /** @name - table of the above variables at each redshift, and number of redshifts */

@@ -124,7 +124,6 @@ struct perturbs
   short evolve_tensor_ur;             /**< will we evolve ur tensor perturbations (either because we have ur species, or we have ncdm species with massless approximation) ? */
   short evolve_tensor_ncdm;             /**< will we evolve ncdm tensor perturbations (if we have ncdm species and we use the exact method) ? */
 
-
   short dmeff_Vrms_dynamic;  /**< will we use k-dependent Vrms and Vflow? If so, ignore pba->Vrel_dmeff_rate. */
   short dmeff_Vfull_dynamic; /**< will we use k-independent Vrms? If so, ignore pba->Vrel_dmeff_rate. */
   double Vrms_convergence_tol; /**< convergence test for the iterating Vrms/Vfull. Iterations are stopped if the required convergence is reached. default = 1e-3 */
@@ -254,9 +253,7 @@ struct perturbs
   short has_source_delta_g;    /**< do we need source for delta of gammas? */
   short has_source_delta_b;    /**< do we need source for delta of baryons? */
   short has_source_delta_cdm;  /**< do we need source for delta of cold dark matter? */
-
   short has_source_delta_dmeff;/**< do we need source for delta of dark matter with effective interactions? */
-
   short has_source_delta_dcdm; /**< do we need source for delta of DCDM? */
   short has_source_delta_fld;  /**< do we need source for delta of dark energy? */
   short has_source_delta_scf;  /**< do we need source for delta from scalar field? */
@@ -267,7 +264,6 @@ struct perturbs
   short has_source_theta_g;    /**< do we need source for theta of gammas? */
   short has_source_theta_b;    /**< do we need source for theta of baryons? */
   short has_source_theta_cdm;  /**< do we need source for theta of cold dark matter? */
-
   short has_source_theta_dmeff;/**< do we need source for theta of dark matter with effective interactions? */
   short has_source_theta_dcdm; /**< do we need source for theta of DCDM? */
   short has_source_theta_fld;  /**< do we need source for theta of dark energy? */
@@ -296,9 +292,7 @@ struct perturbs
   int index_tp_delta_g;   /**< index value for delta of gammas */
   int index_tp_delta_b;   /**< index value for delta of baryons */
   int index_tp_delta_cdm; /**< index value for delta of cold dark matter */
-
   int index_tp_delta_dmeff;/**< index value for delta of dark matter with effective interactions */
-
   int index_tp_delta_dcdm;/**< index value for delta of DCDM */
   int index_tp_delta_fld;  /**< index value for delta of dark energy */
   int index_tp_delta_scf;  /**< index value for delta of scalar field */
@@ -312,9 +306,7 @@ struct perturbs
   int index_tp_theta_g;    /**< index value for theta of gammas */
   int index_tp_theta_b;    /**< index value for theta of baryons */
   int index_tp_theta_cdm;  /**< index value for theta of cold dark matter */
-
   int index_tp_theta_dmeff; /**< index value for theta of dark matter with effective interactions */
-
   int index_tp_theta_dcdm; /**< index value for theta of DCDM */
   int index_tp_theta_fld;  /**< index value for theta of dark energy */
   int index_tp_theta_scf;  /**< index value for theta of scalar field */
@@ -426,10 +418,8 @@ struct perturb_vector
   int index_pt_theta_b;   /**< baryon velocity */
   int index_pt_delta_cdm; /**< cdm density */
   int index_pt_theta_cdm; /**< cdm velocity */
-
   int index_pt_delta_dmeff; /**< dmeff density */
   int index_pt_theta_dmeff; /**< dmeff velocity */
-
   int index_pt_delta_dcdm; /**< dcdm density */
   int index_pt_theta_dcdm; /**< dcdm velocity */
   int index_pt_delta_fld;  /**< dark energy density in true fluid case */
@@ -603,7 +593,6 @@ struct perturb_parameters_and_workspace {
   int index_k;			          /**< index of wavenumber */
   double k;			              /**< current value of wavenumber in 1/Mpc */
   struct perturb_workspace * ppw; /**< workspace defined above */
-
 
   /* Needed for Vrms dmeff calculation (for saving integrand of Vrms^2).
      These indices keep track of index_tau that the perturbations solver covers. */
@@ -804,7 +793,6 @@ extern "C" {
                               ErrorMsg error_message
                               );
 
-
   int perturb_dmeff_Vrms_dynamic(
                                  double tau,
                                  double theta_b,
@@ -822,7 +810,6 @@ extern "C" {
                                       int index_md,
                                       int index_ic
                                       );
-
 
   int perturb_derivs(
                      double tau,
