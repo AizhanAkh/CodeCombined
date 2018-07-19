@@ -175,7 +175,7 @@ extern "C" {
 		 struct primordial *ppm,
 		 struct spectra *psp,
 		 struct nonlinear *pnl,
-         struct nonlinear_pt *pnlpt,
+		 struct nonlinear_pt *pnlpt,
 		 struct lensing *ple,
 		 struct output *pop,
 		 ErrorMsg errmsg
@@ -191,7 +191,7 @@ extern "C" {
 		 struct primordial *ppm,
 		 struct spectra *psp,
 		 struct nonlinear *pnl,
-         struct nonlinear_pt *pnlpt,
+		 struct nonlinear_pt *pnlpt,
 		 struct lensing *ple,
 		 struct output *pop,
 		 ErrorMsg errmsg
@@ -221,7 +221,7 @@ extern "C" {
 			   struct primordial *ppm,
 			   struct spectra *psp,
 			   struct nonlinear *pnl,
-               struct nonlinear_pt *pnlpt,
+			   struct nonlinear_pt *pnlpt,
 			   struct lensing *ple,
 			   struct output *pop
 			   );

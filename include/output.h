@@ -113,8 +113,9 @@ extern "C" {
                    struct spectra * psp,
                    struct output * pop
                    );
+
     
-    int output_pk_nl_pt(
+  int output_pk_nl_pt(
                      struct background * pba,
                      struct perturbs * ppt,
                      struct spectra * psp,
@@ -185,7 +186,7 @@ extern "C" {
                           double z
                           );
     
-    int output_open_pk_nlpt_file(
+  int output_open_pk_nlpt_file(
                             struct background * pba,
                             struct spectra * psp,
                             struct output * pop,
@@ -218,6 +219,7 @@ extern "C" {
   int output_open_pk_nl_file(
                              struct background * pba,
                              struct nonlinear_pt * pnlpt,
+                             struct nonlinear * pnl, /**?? added this*/
                              struct output * pop,
                              FILE ** pkfile,
                              FileName filename,

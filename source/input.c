@@ -2688,7 +2688,7 @@ int input_read_parameters(
   /** (f) parameter related to the non-linear spectra computation */
     
     /* M.I. Here I read the stuff from the .ini file */
-
+    
   class_call(parser_read_string(pfc,
                                 "non linear",
                                 &(string1),
@@ -2702,7 +2702,7 @@ int input_read_parameters(
     class_test(ppt->has_perturbations == _FALSE_, errmsg, "You requested non linear computation but no linear computation. You must set output to tCl or similar.");
       
       if ((strstr(string1,"spt") != NULL) || (strstr(string1,"Spt") != NULL) || (strstr(string1,"SPT") != NULL)) {
-          pnlpt->method = nlpt_spt;
+	  pnlpt->method = nlpt_spt; /**so we can't use bothe at the same time?*/
           pnl->method = nl_none;
           ppt->has_nl_corrections_based_on_delta_m = _TRUE_;
           pnlpt->irres = irres_yes;
@@ -2740,7 +2740,6 @@ int input_read_parameters(
             pnlpt->irres = irres_yes;
         }
     }
-    
     
 
   /** (g) amount of information sent to standard output (none if all set to zero) */
@@ -3489,9 +3488,7 @@ int input_default_precision ( struct precision * ppr ) {
   ppr->a_ini_over_a_today_default = 1.e-14;
   ppr->back_integration_stepsize = 7.e-3;
   ppr->tol_background_integration = 1.e-2;
-
   ppr->tol_Tdmeff_integration = 1.e-2;
-
   ppr->tol_initial_Omega_r = 1.e-4;
   ppr->tol_M_ncdm = 1.e-7;
   ppr->tol_ncdm = 1.e-3;
@@ -3716,7 +3713,6 @@ int input_default_precision ( struct precision * ppr ) {
     
   ppr->nmax_nlpt = 240;
     
-
   /**
    * - parameter related to lensing
    */
@@ -3998,11 +3994,11 @@ int input_try_unknown_parameters(double * unknown_parameter,
     class_call(nonlinear_init(&pr,&ba,&th,&pt,&pm,&nl), nl.error_message, errmsg);
   }
     
-    if (pfzw->required_computation_stage >= cs_nonlinear_pt){
-        if (input_verbose>2)
-            printf("Stage 5.5: nonlinear perturbation theory\n");
-        nlpt.nonlinear_pt_verbose = 0;
-        class_call(nonlinear_pt_init(&pr,&ba,&th,&pt,&pm,&nlpt), nlpt.error_message, errmsg);
+  if (pfzw->required_computation_stage >= cs_nonlinear_pt){
+    if (input_verbose>2)
+      printf("Stage 5.5: nonlinear perturbation theory\n");
+    nlpt.nonlinear_pt_verbose = 0;
+    class_call(nonlinear_pt_init(&pr,&ba,&th,&pt,&pm,&nlpt), nlpt.error_message, errmsg);
     }
 
   if (pfzw->required_computation_stage >= cs_transfer){

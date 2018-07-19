@@ -19,6 +19,7 @@ annihilation_zmin = 30
 annihilation_f_halo = 20
 annihilation_z_halo = 8
 on the spot = yes
+IR resummation = No
 f_bi = 1.
 n_bi = 1.5
 f_cdi = 1.

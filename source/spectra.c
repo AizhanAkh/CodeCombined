@@ -896,7 +896,6 @@ int spectra_pk_nl_at_z(
                                           psp->error_message),
                  psp->error_message,
                  psp->error_message);
-
     }
     else {
 
@@ -926,7 +925,6 @@ int spectra_pk_nl_at_z(
   return _SUCCESS_;
 
 }
-
 
 
 int spectra_pk_nl_bias_at_z(
@@ -1189,7 +1187,6 @@ int spectra_pk_nl_at_k_and_z(
   /** Summary: */
 
   /** - define local variables */
-
   int index_md;
   int last_index;
 
@@ -1339,8 +1336,8 @@ int spectra_pk_nl_at_k_and_z(
              psp->error_message);
 
   *pk_tot = exp(*pk_tot);
-  free(spectrum_at_z);
-  free(spline);
+     free(spectrum_at_z);
+      free(spline);
     
     // Id2d2
     
@@ -1565,10 +1562,12 @@ int spectra_pk_nl_at_k_and_z(
     free(spectrum_CTR_at_z);
     free(spline_CTR);
     
+    
 
   return _SUCCESS_;
 
 }
+
 
 
 
@@ -1648,9 +1647,7 @@ int spectra_pk_nl_halofit_at_k_and_z(
     free(spline);
     
     return _SUCCESS_;
-    
 }
-
 
 /**
  * Matter transfer functions \f$ T_i(k) \f$ for arbitrary redshift and for all
@@ -2137,7 +2134,7 @@ int spectra_free(
         }
 
       }
-
+    
       if (psp->matter_transfer != NULL) {
 
         free(psp->matter_transfer);
@@ -2146,6 +2143,7 @@ int spectra_free(
         }
       }
     }
+  
 
     if (psp->Vrms_dmeff != NULL){
       free(psp->ln_DVrms2_dmeff);
@@ -3509,7 +3507,6 @@ int spectra_k_and_tau(
         ln_tau_size. But the same table ln_tau will be used for
         both. */
 
-
   if (pnlpt->method != nlpt_none && pnl->method == nl_none) {
 
     index_tau=ppt->tau_size-psp->ln_tau_size;
@@ -3525,7 +3522,6 @@ int spectra_k_and_tau(
     }
 
   }
-
     
 //        printf("Everything is OK in 'spectra_k_and_tau'\n");
     
@@ -3546,7 +3542,6 @@ int spectra_k_and_tau(
         
     }
     
-
   return _SUCCESS_;
 }
 
@@ -3606,7 +3601,6 @@ int spectra_pk(
   class_alloc(psp->ln_pk_l,
               sizeof(double)*psp->ln_tau_size*psp->ln_k_size,
               psp->error_message);
-
     
     if (pnlpt->method != nlpt_none || pnl->method != nl_none) {
         
@@ -3704,9 +3698,9 @@ int spectra_pk(
         psp->ln_pk_nl_CTR = NULL;
     }
     
-    
+
 //        printf("Everything is OK in 'spectra_pk' 1.5\n");
-    
+   
 
   for (index_tau=0 ; index_tau < psp->ln_tau_size; index_tau++) {
     for (index_k=0; index_k<psp->ln_k_size; index_k++) {
@@ -3783,7 +3777,6 @@ int spectra_pk(
       psp->ln_pk_l[index_tau * psp->ln_k_size + index_k] = ln_pk_tot;
 
       /* if non-linear corrections required, compute the total non-linear matter power spectrum */
-        
         /* Here the non-linear module is being called */
 
       if ((pnlpt->method != nlpt_none) && (pnl->method == nl_none) && (index_tau >= delta_index_nl)) {
@@ -3830,7 +3823,7 @@ int spectra_pk(
             
         }
         
- 
+        
     }
   }
 
@@ -3878,7 +3871,6 @@ int spectra_pk(
 
   /**- if interpolation of \f$ P_{NL}(k,\tau)\f$ will be needed (as a function of tau),
      compute array of second derivatives in view of spline interpolation */
-    
   if (pnlpt->method != nlpt_none && pnl->method == nl_none) {
     if (psp->ln_tau_nl_size > 1) {
 
@@ -3893,7 +3885,7 @@ int spectra_pk(
                                           psp->error_message),
                  psp->error_message,
                  psp->error_message);
-
+        
         
         class_alloc(psp->ddln_pk_nl_Id2d2,sizeof(double)*psp->ln_tau_nl_size*psp->ln_k_size,psp->error_message);
         
@@ -4008,7 +4000,8 @@ int spectra_pk(
         }
     }
 
-
+    
+    
   free (primordial_pk);
 
   return _SUCCESS_;

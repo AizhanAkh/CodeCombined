@@ -7,19 +7,18 @@
 #include "float.h"
 #include "svnversion.h"
 #include <stdarg.h>
-#include <gsl/gsl_sf_hyperg.h>
 
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <complex.h>
-#undef I
+#undef I /** do we need this?*/
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_spline.h>
 #include <fftw3.h>
-
+#include <gsl/gsl_sf_hyperg.h>
 
 #ifdef _OPENMP
 #include "omp.h"
@@ -763,7 +762,7 @@ struct precision
       /** parameters relevant for PT computation */
 
     int nmax_nlpt;
-    
+
   /** parameters relevant for HALOFIT computation */
 
   double halofit_min_k_nonlinear; /**< value of k in 1/Mpc below which

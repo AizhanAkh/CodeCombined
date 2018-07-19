@@ -221,8 +221,8 @@ int output_init(
 
   }
 
+    
   return _SUCCESS_;
-
 }
 
 /**
@@ -935,6 +935,7 @@ int output_pk_nl(
 
   double * pk_tot; /* array with argument pk_tot[index_k] */
 
+
   int index_k;
   int index_z;
 
@@ -973,7 +974,6 @@ int output_pk_nl(
                 psp->ln_k_size*sizeof(double),
                 pop->error_message);
 
-
     /** - third, compute P(k) for each k (if several ic's, compute it for each ic and compute also the total); if z_pk = 0, this is done by directly reading inside the pre-computed table; if not, this is done by interpolating the table at the correct value of tau. */
 
     /* if z_pk = 0, no interpolation needed */
@@ -997,6 +997,7 @@ int output_pk_nl(
                                     pk_tot),
                  psp->error_message,
                  pop->error_message);
+
     }
 
     /** - fourth, write in files */
@@ -1021,6 +1022,7 @@ int output_pk_nl(
   return _SUCCESS_;
 
 }
+
 
 
 // Misha: my brand new output is here !!!
@@ -1953,6 +1955,7 @@ int output_open_pk_nlpt_file(
 
 
 
+
 /**
  * This routine writes one line with k and P(k)
  *
@@ -1961,7 +1964,6 @@ int output_open_pk_nlpt_file(
  * @param one_pk  Input: matter power spectrum
  * @return the error status
  */
-
 
 int output_one_line_of_pk(
                           FILE * pkfile,
@@ -1977,7 +1979,6 @@ int output_one_line_of_pk(
   return _SUCCESS_;
 
 }
-
 
 /**
  * This routine writes # lines with k and P(k), and bias tracers' loop integrals

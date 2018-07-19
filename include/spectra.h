@@ -215,13 +215,13 @@ struct spectra {
                     */
   double * ddln_pk_nl; /**< second derivative of above array with respect to log(tau), for spline interpolation. */
     
-    double * ln_pk_nl_Id2d2;   /**< Non-linear matter power spectrum.
+  double * ln_pk_nl_Id2d2;   /**< Non-linear matter power spectrum.
                           depends on indices index_k, index_tau as:
                           ln_pk_nl[index_tau * psp->k_size + index_k]
                           */
-    double * ddln_pk_nl_Id2d2; /**< second derivative of above array with respect to log(tau), for spline interpolation. */
+  double * ddln_pk_nl_Id2d2; /**< second derivative of above array with respect to log(tau), for spline interpolation. */
     
-     double * ln_pk_nl_Id2;
+    double * ln_pk_nl_Id2;
     double * ddln_pk_nl_Id2;
     
     double * ln_pk_nl_IG2;
@@ -281,6 +281,7 @@ struct spectra {
   /* double * LddCl; /\**< density Cl's in the Limber plus thin shell approximation (then, there are no non-diagonal correlations between various shells of different redshifts); depends on index_tau,index_l as: LddCl[index_tau*psp->psp->l_size[psp->index_md_scalars]+index_l] *\/ */
 
   /* double * LTdCl; /\**< cross (temperature * density) Cl's in the Limber plus thin shell approximation; depends on index_tau,index_l as: LTdCl[index_tau*psp->psp->l_size[psp->index_md_scalars]+index_l] *\/ */
+
 
   double * ln_DVrms2_dmeff; /**< ln_DVrms2_dmeff[(index_tau * psp->k_size + index_k)* psp->ic_ic_size[index_md] + index_ic1_ic2]
                               Log of integrand of Vrms_dmeff. */
@@ -350,7 +351,9 @@ extern "C" {
                             double * pk,
                             double * pk_ic
                             );
+
 /*
+
   int spectra_pk_nl_at_z(
                          struct background * pba,
                          struct spectra * psp,
@@ -381,7 +384,7 @@ extern "C" {
                                 double * output_tot_IFG2,
                                 double * output_tot_CTR
                                 );
-
+    
 
   int spectra_pk_nl_at_k_and_z(
                                struct background * pba,
@@ -401,7 +404,7 @@ extern "C" {
                                double * pk_tot_CTR
                                );
     
-    int spectra_pk_nl_halofit_at_k_and_z(
+  int spectra_pk_nl_halofit_at_k_and_z(
                                  struct background * pba,
                                  struct primordial * ppm,
                                  struct spectra * psp,
@@ -409,7 +412,7 @@ extern "C" {
                                  double z,
                                  double * pk_tot
                                  );
-   
+    
 
   int spectra_tk_at_z(
                       struct background * pba,
@@ -474,6 +477,14 @@ extern "C" {
                          double * transfer_ic2
                          );
 
+  int spectra_k_and_tau(
+                        struct background * pba,
+                        struct perturbs * ppt,
+                        struct nonlinear_pt *pnlpt,
+			struct nonlinear *pnl,
+                        struct spectra * psp
+                        );
+
   int spectra_vrms_dmeff(
                          struct background * pba,
                          struct perturbs * ppt,
@@ -481,14 +492,7 @@ extern "C" {
                          struct primordial * ppm,
                          struct spectra * psp
                          );
-
-  int spectra_k_and_tau(
-                        struct background * pba,
-                        struct perturbs * ppt,
-                        struct nonlinear_pt *pnlpt,
-                        struct nonlinear *pnl,
-                        struct spectra * psp
-                        );
+                        
 
   int spectra_pk(
                  struct background * pba,

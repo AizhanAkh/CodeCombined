@@ -14,7 +14,7 @@
 1) Hubble parameter : either 'H0' in km/s/Mpc or 'h' (default: 'h' set to 0.704)
 
 #H0 = 72.
-h =0.7
+h =0.67
 
 2) photon density: either 'T_cmb' in K or 'Omega_g' or 'omega_g' (default: 'T_cmb' set to 2.726)
 
@@ -25,7 +25,7 @@ T_cmb = 2.726
 3) baryon density: either 'Omega_b' or 'omega_b' (default: 'omega_b' set to 0.02253)
 
 #Omega_b = 0.05
-omega_b = 0.0266691
+omega_b = 0.02218
 
 
 
@@ -45,8 +45,14 @@ omega_cdm = 1.e-15
 omega_dmeff = 0.1205
 m_dmeff = 1.0
 spin_dmeff = 0.5
-sigma_dmeff = 5.4e-19
-npow_dmeff = 2
+sigma_dmeff = 5.1e-26
+npow_dmeff = 0
+
+
+calculation_a_la_dvorkin_et_al = yes
+Vrel_dmeff_rate = 30
+dmeff_Vrms_dynamic = no
+dmeff_Vfull_dynamic = no
 6) all parameters describing the ncdm sector (i.e. any non-cold dark matter relics, 
    including massive neutrinos, warm dark matter, etc.): 
 
@@ -133,8 +139,8 @@ reio_parametrization = reio_camb
 
 3.a.) if 'reio_parametrization' set to 'reio_camb' or 'reio_half_tanh': enter one of 'z_reio' or 'tau_reio' (default: 'z_reio' set to 10.3), plus 'reionization_exponent', 'reionization_width', 'helium_fullreio_redshift', 'helium_fullreio_width' (default: set to 1.5, 1.5, 3.5, 0.5)
 
-z_reio = 10.
-#tau_reio = 0.084522
+#z_reio = 10.
+tau_reio = 0.07
 
 reionization_exponent = 1.5
 reionization_width = 1.5
