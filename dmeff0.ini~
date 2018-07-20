@@ -45,8 +45,26 @@ omega_cdm = 1.e-15
 omega_dmeff = 0.1205
 m_dmeff = 1.0
 spin_dmeff = 0.5
-sigma_dmeff = 5.1e-26
-npow_dmeff = 0
+sigma_dmeff = 5.4e-19
+npow_dmeff = 2
+
+#dmeff_baryon_heat_exchange = yes
+#dmeff_backreaction_on_baryons = no
+calculation_a_la_dvorkin_et_al = yes
+
+Vrel_dmeff_rate = 30
+#dmeff_niter_dynamic_max = 10
+
+#dmeff_interacting_species = hydrogen
+#Tracy_and_Cora_Helium = no
+#z_rate_off_dmeff = 0
+
+#tight_coupling_trigger_tau_c_over_tau_h = 0.0
+#tight_coupling_trigger_tau_c_over_tau_k = 0.0
+
+#k_per_decade_for_pk = 100
+#P_k_max_h/Mpc = 10
+
 6) all parameters describing the ncdm sector (i.e. any non-cold dark matter relics, 
    including massive neutrinos, warm dark matter, etc.): 
 
@@ -125,7 +143,7 @@ YHe = 0.25
 
 2) 'recombination' algorithm set to 'RECFAST' or 'HyRec'
 
-recombination = RECFAST
+recombination = recfast
 
 2) parametrization of reionization: 'reio_parametrization' must be one of 'reio_none' (no reionization), 'reio_camb' (like CAMB: one tanh() step for hydrogen reionization one for second helium reionization), 'reio_bins_tanh' (binned history x_e(z) with tanh() interpolation between input values), 'reio_half_tanh' (like 'reio_camb' excepted that we match the function xe(z) from recombination with only half a tanh(z-z_reio))... (default: set to 'reio_camb')
 
@@ -185,8 +203,8 @@ decay = 0.
 By defaut, the code will try to compute the following cross-correlation Cls (if available): temperature-polarisation, temperature-CMB lensing, polarization-CMB lensing, and density-lensing. Other cross-correlations are not computed because they would slow down the code considerably.
 Can be left blank if you do not want to evolve cosmological perturbations at all. (default: set to blanck, no perturbation calculation)
 
-output = tCl,mPk
-#output = tCl,pCl,lCl,mPk
+#output = tCl,mPk
+output = tCl,pCl,lCl,mPk
 #output = mPk,mTk
 
 2) if you want an estimate of the non-linear P(k), enter 'halofit' or 'Halofit' or 'HALOFIT' for Halofit; or 'SPT' for one-loop perturbation theory; otherwise leave blank (default: blank, no non-linear P(k))
@@ -206,7 +224,7 @@ modes = s,t
 
 4) relevant only if you ask for 'tCl, lCl' and/or 'pCl, lCl': if you want the spectrum of lensed Cls, enter a word containing the letter 'y' or 'Y' (default: no lensed Cls)
 
-lensing =  
+lensing = yes 
 
 5) list of initial conditions for scalars ('ad' for adiabatic, 'bi' for baryon isocurvature, 'cdi' for CDM isocurvature, 'nid' for neutrino density isocurvature, 'niv' for neutrino velocity isocurvature). More than one of these allowed, can be attached or separated by arbitrary characters; letters can be small or capital. (default: set to 'ad')
 
@@ -345,7 +363,7 @@ P_k_max_h/Mpc = 100.
 
 3) value(s) 'z_pk' of redshift(s) for P(k,z) output file(s); can be ordered arbitrarily, but must be separated by comas (default: set 'z_pk' to 0)
 
-z_pk = 0., 1.
+z_pk = 0.
 
 #z_pk = 0., 1.2, 3.5
 
@@ -362,7 +380,7 @@ non_diagonal=0
 
 7) file name root 'root' for all output files (default: set 'root' to 'output/') (if Cl requested, written to '<root>cl.dat'; if P(k) requested, written to '<root>pk.dat'; plus similar files for scalars, tensors, pairs of initial conditions, etc.; if file with input parameters requested, written to '<root>parameters.ini')
 
-root = output/test_dmeff_
+root = output/dmeff/dmeff_0_eft_
 
 8) do you want headers at the beginning of each output file (giving precisions on the output units/ format) ? If 'headers' set to something containing the letter 'y' or 'Y', headers written, otherwise not written (default: written)
 
@@ -378,7 +396,8 @@ bessel file = no
 
 11) Do you want to write a table of background quantitites in a file? This will include H, densities, Omegas, various cosmological distances, sound horizon, etc., as a function of conformal time, proper time, scale factor. File created if 'write background'  set to something containing the letter 'y' or 'Y', file written, otherwise not written (default: not written)
 
-write background = no
+write background = 
+write thermodynamics = 
 
 12) Do you want to have all input/precision parameters which have been read written in file '<root>parameters.ini', and those not written in file '<root>unused_parameters' ? If 'write parameters' set to something containing the letter 'y' or 'Y', file written, otherwise not written (default: not written)
 

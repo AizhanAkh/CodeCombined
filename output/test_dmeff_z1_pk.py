@@ -42,7 +42,7 @@ ax.loglog(curve[:, 0], abs(curve[:, 7]))
 ax.loglog(curve[:, 0], abs(curve[:, 8]))
 
 #ax.legend([root+': '+elem for (root, elem) in
-    itertools.product(roots, y_axis)], loc='best')
+   # itertools.product(roots, y_axis)], loc='best')
 
 ax.set_xlabel('k (h/Mpc)', fontsize=16)
 ax.set_xlim(xlim)
