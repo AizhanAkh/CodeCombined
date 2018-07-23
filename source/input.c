@@ -2741,6 +2741,28 @@ int input_read_parameters(
         }
     }
     
+    
+         // Here I include bias tracers
+    
+    if (pnlpt->method == nlpt_spt) {
+        
+        class_call(parser_read_string(pfc,
+                                      "Bias tracers",
+                                      &(string1),
+                                      &(flag1),
+                                      errmsg),
+                   errmsg,
+                   errmsg);
+        
+        if ((strstr(string1,"NO") != NULL) || (strstr(string1,"No") != NULL) || (strstr(string1,"N") != NULL)) {
+            pnlpt->bias = bias_no;
+        }
+        
+        else {
+            pnlpt->bias = bias_yes;
+        }
+    }
+    
 
   /** (g) amount of information sent to standard output (none if all set to zero) */
 
