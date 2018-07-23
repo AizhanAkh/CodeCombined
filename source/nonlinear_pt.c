@@ -116,10 +116,6 @@ int nonlinear_pt_init(
     class_alloc(lnk_l,pnlpt->k_size*sizeof(double),pnlpt->error_message);
     class_alloc(lnpk_l,pnlpt->k_size*sizeof(double),pnlpt->error_message);
     class_alloc(ddlnpk_l,pnlpt->k_size*sizeof(double),pnlpt->error_message);
-
-      
-    //  double tau_req[pnlpt->z_pk_num];
-    //  double deltatau[pnlpt->z_pk_num];
       
 
       class_alloc(tau_req,pnlpt->z_pk_num * sizeof(double),pnlpt->error_message);
@@ -263,7 +259,8 @@ int nonlinear_pt_init(
                      pnlpt->error_message);
 
        /* get P_NL(k) at this time */
-      if (print_warning == _FALSE_ && ptcounter > 0) {
+//      if (print_warning == _FALSE_ && ptcounter > 0) {
+if (print_warning == _FALSE_) {
           class_call(nonlinear_pt_loop(ppr,
                                      pba,
                                      ppm,
@@ -639,7 +636,7 @@ sigmav = sum0;
          
     // Here I do IR resummation
          
-     printf("IR resummation performed.\n");
+//     printf("IR resummation performed.\n");
          
      //   IR-1) Computing the DFST-II of log(kP)
      
@@ -853,7 +850,7 @@ sigmav = sum0;
          gsl_spline_free (spline_lnpl);
          gsl_interp_accel_free (acc_lnpl);
          
-         printf("IR resummation skipped.\n");
+ //        printf("IR resummation skipped.\n");
          for (size_t i=0; i<Nmax; i++){
           Pbin[i] = Pdisc[i];
           Ptree[i] = Pbin[i];
@@ -1044,6 +1041,8 @@ sigmav = sum0;
      
      /* Here I compute the power spectra for biased tracers. For this reason I have to compute the FFTLog coefficients for a new bias b2 */
 
+    if (pnlpt->bias == bias_yes) {
+    
      double complex *etam2;
      class_alloc(etam2,(Nmax+1)*sizeof(complex double),pnlpt->error_message);
      
@@ -1385,13 +1384,30 @@ sigmav = sum0;
      free(f13_IFG2);
      free(P_IFG2);
      
+     free(etam2);
+free(cmsym2);
+        
+} // end of bias conditional expression
+     
+     else {
+//         printf("No bias tracers requested.\n");
+         
+         for (index_k=0; index_k < pnlpt->k_size; index_k++){
+             pk_Id2d2[index_k] = pk_l[index_k] ;
+             pk_Id2[index_k] = pk_l[index_k] ;
+             pk_IG2[index_k] = pk_l[index_k] ;
+             pk_Id2G2[index_k] = pk_l[index_k] ;
+             pk_IG2G2[index_k] = pk_l[index_k] ;
+             pk_IFG2[index_k] = pk_l[index_k] ;
+         }
+         
+     }
+
+     
 free(js);
 free(kdisc);
 free(Pbin);
 free(Pdisc);
-     
-free(etam2);
-free(cmsym2);
      
 return _SUCCESS_;
 }
