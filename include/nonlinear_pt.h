@@ -16,6 +16,7 @@
 
 enum non_linear_method_pt {nlpt_none,nlpt_spt};
 enum non_linear_irresumm_pt {irres_yes,irres_no};
+enum non_linear_bias_pt {bias_yes,bias_no};
 
 //enum halofit_integral_type {halofit_integral_one, halofit_integral_two, halofit_integral_three};
 //enum halofit_statement {ok, too_small};
@@ -39,6 +40,7 @@ struct nonlinear_pt {
 
 enum non_linear_method_pt method; /**< method for computing non-linear corrections (none, Halogit, etc.) */
 enum non_linear_irresumm_pt irres;
+enum non_linear_bias_pt bias;
   //@}
 
   /** @name - table non-linear corrections for matter density, sqrt(P_NL(k,z)/P_NL(k,z)) */
