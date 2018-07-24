@@ -1,8 +1,6 @@
 # List of input/precision parameters passed
 # but not used (just for info)
 #
-calculation_a_la_dvorkin_et_al = yes
-Vrel_dmeff_rate = 30
 ncdm_psd_filenames = psd_FD_single.dat
 ncdm_psd_parameters = 0.3 ,0.5, 0.05
 m_ncdm = 0.04, 0.04, 0.04
@@ -17,6 +15,7 @@ annihilation_zmin = 30
 annihilation_f_halo = 20
 annihilation_z_halo = 8
 on the spot = yes
+non linear ic = PT
 f_bi = 1.
 n_bi = 1.5
 f_cdi = 1.
@@ -26,6 +25,9 @@ alpha_nid = 0.01
 c_ad_bi = 0.5
 c_ad_cdi = -1.
 c_bi_nid = 1.
+r = 1.
+n_t = scc
+alpha_t = scc
 potential = polynomial
 V_0 = 1.e-13
 V_1 = -1.e-14
@@ -38,6 +40,7 @@ P_{II}^1 = 1.e-11
 P_{II}^2 = 1.e-11
 P_{RI}^1 = -1.e-13
 |P_{RI}^2| = 1.e-13
+l_max_tensors = 500
 selection = gaussian
 selection_mean = 1.
 selection_width = 0.5

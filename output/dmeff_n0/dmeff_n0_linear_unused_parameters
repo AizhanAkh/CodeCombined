@@ -1,7 +1,6 @@
 # List of input/precision parameters passed
 # but not used (just for info)
 #
-spin_dmeff = 0.5
 ncdm_psd_filenames = psd_FD_single.dat
 ncdm_psd_parameters = 0.3 ,0.5, 0.05
 m_ncdm = 0.04, 0.04, 0.04
@@ -16,7 +15,8 @@ annihilation_zmin = 30
 annihilation_f_halo = 20
 annihilation_z_halo = 8
 on the spot = yes
-IR resummation = No
+IR resummation = yes
+Bias tracers = NO
 f_bi = 1.
 n_bi = 1.5
 f_cdi = 1.
